@@ -34,7 +34,7 @@ export default {
 @import "~assets/styles/init/variables";
 
 .menu {
-  width: 20%;
+  width: 15%;
   padding: 0 30px;
   position: relative;
   border-right: 1px solid $dark-grey;

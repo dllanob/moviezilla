@@ -17,9 +17,10 @@
     </section>
     <aside class="content_aside">
       <h2 class="title">
-        In coming
+        Upcoming
       </h2>
-      <incoming-items-list />
+      <upcoming-items-list />
+      <cart />
     </aside>
   </div>
 </template>

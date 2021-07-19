@@ -18,7 +18,6 @@ export const actions = {
     commit('SET_ERROR', '')
     await axios.get(`${process.env.BASE_URL}movie/${id}`, config)
       .then((response) => {
-        console.log(response)
         commit('SET_MOVIE_DETAIL', response.data)
       })
   }

@@ -60,7 +60,7 @@ export const mutations = {
   SET_DISCOVER_MOVIES: (state, movies) => (state.discover = movies),
   SET_POPULAR_MOVIES: (state, movies) => (state.popular = movies),
   SET_TOP_RATED_MOVIES: (state, movies) => (state.top_rated = movies),
-  SET_UPCOMING_MOVIES: (state, movies) => (state.popular = movies),
+  SET_UPCOMING_MOVIES: (state, movies) => (state.upcoming = movies),
   SET_SIMILAR_MOVIES: (state, movies) => (state.similar = movies)
 }
 

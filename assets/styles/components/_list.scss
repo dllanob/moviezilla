@@ -1,0 +1,27 @@
+ol.list {
+  position: relative;
+  counter-reset: counter;
+  > li {
+    display: block;
+    font-size: .9em;
+    line-height: 1.4em;
+    padding-left: 15px;
+    margin-bottom: 15px;
+    position: relative;
+    counter-increment: counter;
+    &:before {
+      content: counter(counter) ". ";
+      top: 0;
+      left: 0;
+      font-weight: bold;
+      position: absolute;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+  .ant-rate {
+    font-size: .8em;
+    margin-top: 5px;
+  }
+}

@@ -1,31 +1,33 @@
 <template>
-  <nuxt-link v-if="movie" :to="`/movie/detail/${movie.id}`" class="card" :class="{ 'card--banner': type === 'banner', 'card--simple': type === 'simple', 'card--wide': type === 'wide', 'card--image': type === 'image' }">
-    <template v-if="movie">
+  <div v-if="movie" class="card" :class="{ 'card--banner': type === 'banner', 'card--simple': type === 'simple', 'card--wide': type === 'wide', 'card--image': type === 'image' }">
+    <nuxt-link :to="`/movie/detail/${movie.id}`">
       <img :src="`https://image.tmdb.org/t/p/original${ type === 'banner' || type === 'image' || type === 'wide' ? movie.backdrop_path : movie.poster_path}`" class="card_image" :alt="movie.title">
-      <h3 class="card_title">
-        {{ movie.title }}
-      </h3>
-      <h5 class="card_subtitle">
-        {{ new Date(movie.release_date).getFullYear() }}
-      </h5>
-      <categories-list v-if="type === 'banner'" class="card_categories" />
-      <div class="card_actions">
-        <nuxt-link v-if="type === 'banner'" :to="`/movie/detail/${movie.id}`">
-          <a-button class="card_button" type="primary">
-            Details
-            <a-icon type="right" />
-          </a-button>
-        </nuxt-link>
-        <a-button v-show="!(type === 'image')" class="card_button add">
-          <a-icon type="shopping-cart" />
+    </nuxt-link>
+    <h3 v-if="!(type === 'simple')" class="card_title">
+      {{ movie.title }}
+    </h3>
+    <h5 v-if="!(type === 'simple')" class="card_subtitle">
+      {{ new Date(movie.release_date).getFullYear() }}
+    </h5>
+    <categories-list v-if="type === 'banner'" class="card_categories" />
+    <div class="card_actions">
+      <nuxt-link v-if="type === 'banner'" :to="`/movie/detail/${movie.id}`">
+        <a-button class="card_button" type="primary">
+          Details
+          <a-icon type="right" />
         </a-button>
-      </div>
-    </template>
+      </nuxt-link>
+      <a-button v-show="!(type === 'image')" class="card_button add" @click="addMovie(movie)">
+        <a-icon type="shopping-cart" />
+      </a-button>
+    </div>
     <a-rate v-if="type === 'wide' || type === 'image'" :default-value="2" disabled />
-  </nuxt-link>
+  </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: {
     type: {
@@ -35,6 +37,14 @@ export default {
     movie: {
       type: Object,
       default: null
+    }
+  },
+  methods: {
+    ...mapActions({
+      addMovieToCart: 'cart/addItemToCart'
+    }),
+    addMovie (movie) {
+      this.addMovieToCart(movie).then(() => this.$message.success('Movie added to the cart'))
     }
   }
 }

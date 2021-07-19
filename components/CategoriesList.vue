@@ -12,5 +12,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+.category-list {
+  li {
+    color: white
+  }
+}
 </style>
