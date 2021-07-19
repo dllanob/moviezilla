@@ -1,16 +1,16 @@
 <template>
-  <section class="outstanding-item">
+  <section v-if="movie" class="outstanding-item">
     <div class="outstanding-item_banner">
-      <img src="~assets/images/outstanding.jpg" alt="banner image">
+      <img :src="`https://image.tmdb.org/t/p/original${ movie.backdrop_path }`" alt="banner image">
     </div>
     <div class="outstanding-item_description">
       <h2 class="outstanding-item_description_title">
-        The beauty and the beast
+        {{ movie.title }}
       </h2>
       <a-rate :default-value="2" />
       <categories-list />
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, ullam. Ipsum maiores esse veritatis molestias quas, dicta corporis praesentiga, soluta, asperiores laborum necessitatibus magni doloremque facere velit ea voluptatem quia. Perferendis consectetur...</p>
-      <nuxt-link to="/movie/detail">
+      <p>{{ movie.overview }}</p>
+      <nuxt-link :to="`/movie/detail/${movie.id}`">
         Check more
       </nuxt-link>
     </div>
@@ -18,7 +18,31 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
+  data () {
+    return {
+      movie: null
+    }
+  },
+  async fetch () {
+    await this.fetchPopularMovies()
+  },
+  computed: {
+    ...mapGetters({
+      movies: 'movies/popular'
+    })
+  },
+  mounted () {
+    const position = Math.floor(Math.random() * 20)
+    this.movie = this.movies[position]
+  },
+  methods: {
+    ...mapActions({
+      fetchPopularMovies: 'movies/fetchPopularMovies'
+    })
+  }
 }
 </script>
 

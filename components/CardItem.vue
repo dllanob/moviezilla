@@ -6,7 +6,7 @@
         {{ movie.title }}
       </h3>
       <h5 class="card_subtitle">
-        {{ movie.release_date }}
+        {{ new Date(movie.release_date).getFullYear() }}
       </h5>
       <categories-list v-if="type === 'banner'" class="card_categories" />
       <div class="card_actions">

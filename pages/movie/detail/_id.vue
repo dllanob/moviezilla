@@ -1,20 +1,18 @@
 <template>
-  <div class="movie-detail">
-    <nuxt-link to="/home/movies" class="movie-detail_back">
-      <a-icon type="left" />
-    </nuxt-link>
+  <div v-if="movie" class="movie-detail">
+    <a-icon type="left" class="movie-detail_back" role="button" @click="goBack" />
     <div class="movie-detail_banner">
-      <img src="~assets/images/movie.jpg" alt="banner">
+      <img :src="`https://image.tmdb.org/t/p/original${ movie.backdrop_path }`" alt="banner">
     </div>
     <div class="movie-detail_content">
       <h3 class="movie-detail_date">
-        2019
+        {{ new Date(movie.release_date).getFullYear() }}
       </h3>
       <h1 class="movie-detail_title">
-        The avengers: Final War
+        {{ movie.title }}
       </h1>
       <categories-list class="movie-detail_categories" />
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, minima non! A ratione libero at totam blanditiis autem eveniet et error voluptatum rerum, illum voluptate expedita molestiae minus cupiditate quibusdam qui sequi ipsam quae dicta. Facere eos eligendi ipsa repellendus ea doloremque, fugiat reprehenderit facilis dolor, dolorem odit quis pariatur!</p>
+      <p>{{ movie.overview }}</p>
       <h3 class="movie-detail_subtitle">
         Rate
       </h3>
@@ -27,19 +25,22 @@
         <h3 class="movie-detail_subtitle">
           You may also like
         </h3>
-        <similar-items-list />
+        <similar-items-list v-if="movie" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
-  async fetch ({ params }) {
-    const slug = params.id
-    await this.fetchMovieDetail(slug)
+  asyncData ({ params }) {
+    const id = params.id
+    return { id }
+  },
+  async fetch () {
+    await this.fetchMovieDetail(this.id)
   },
   computed: {
     ...mapGetters({
@@ -49,7 +50,14 @@ export default {
   methods: {
     ...mapActions({
       fetchMovieDetail: 'movie/fetchMovieDetail'
-    })
+    }),
+    ...mapMutations({
+      clearMovie: 'movie/SET_EMPTY_MOVIE'
+    }),
+    goBack () {
+      this.$router.go(-1)
+      this.clearMovie()
+    }
   }
 }
 </script>
@@ -119,7 +127,7 @@ export default {
   }
   &_subtitle {
     font-weight: bolder;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 0.2em;
   }
