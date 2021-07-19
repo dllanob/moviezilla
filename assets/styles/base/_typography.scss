@@ -1,0 +1,24 @@
+.title {
+  display: block;
+  font-weight: bolder;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  border-bottom: 1px solid $dark-grey;
+  letter-spacing: 0.2em;
+}
+
+a {
+  text-decoration: underline;
+  &:hover {
+    color: $accent-color;
+    text-decoration: underline;
+  }
+}
+
+p {
+  opacity: .7;
+  font-size: .9em;
+  line-height: 1.6em;
+  margin-bottom: 20px;
+}

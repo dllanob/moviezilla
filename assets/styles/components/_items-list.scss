@@ -1,0 +1,11 @@
+.items-list {
+  display: flex;
+  overflow-x: scroll;
+  padding: 0 0 5px 20px;
+  margin-left: -20px;
+  margin-bottom: 30px;
+  scroll-padding: 0 20px;
+  scroll-snap-type: x proximity;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}

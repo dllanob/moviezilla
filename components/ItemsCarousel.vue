@@ -1,14 +1,31 @@
 <template>
   <a-carousel autoplay class="carousel" effect="fade">
-    <card-item />
-    <card-item />
-    <card-item />
-    <card-item />
+    <p v-if="$fetchState.pending">
+      <span class="loading" />
+    </p>
+    <template v-else>
+      <card-item v-for="(movie, index) in movies.slice(0, 5)" :key="index" type="banner" :movie="movie" />
+    </template>
   </a-carousel>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
+  async fetch () {
+    await this.fetchDiscoverMovies()
+  },
+  computed: {
+    ...mapGetters({
+      movies: 'movies/discover'
+    })
+  },
+  methods: {
+    ...mapActions({
+      fetchDiscoverMovies: 'movies/fetchDiscoverMovies'
+    })
+  }
 }
 </script>
 
