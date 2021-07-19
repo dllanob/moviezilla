@@ -28,15 +28,13 @@ export default {
   },
   async fetch () {
     await this.fetchPopularMovies()
+    const position = Math.floor(Math.random() * 20)
+    this.movie = this.movies[position]
   },
   computed: {
     ...mapGetters({
       movies: 'movies/popular'
     })
-  },
-  mounted () {
-    const position = Math.floor(Math.random() * 20)
-    this.movie = this.movies[position]
   },
   methods: {
     ...mapActions({

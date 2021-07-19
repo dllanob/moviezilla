@@ -23,8 +23,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      fetchMovieDetail: 'movie/fetchMovieDetail',
-      addMovieToCart: 'cart/addItemToCart'
+      fetchMovieDetail: 'movie/fetchMovieDetail'
     }),
     ...mapMutations({
       clearMovie: 'movie/SET_EMPTY_MOVIE'

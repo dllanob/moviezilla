@@ -143,6 +143,7 @@ export default {
         padding: 8px 5px;
         font-size: 1.2em;
         position: absolute;
+        z-index: 10;
       }
     }
   }

@@ -4,7 +4,7 @@
       Total
     </h3>
     <p class="cart_total_value">
-      {{ total }}
+      {{ total }}.00€
     </p>
   </div>
 </template>
@@ -22,11 +22,21 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~assets/styles/init/variables";
+
 .cart_total {
-  color: red;
+  display: flex;
+  justify-content: space-between;
+  &_text {
+    font-size: 1.4em;
+    color: $dark-grey;
+    font-weight: bolder;
+  }
   &_text,
   &_value {
-    color: red;
+    margin: 0;
+    font-size: 1.4em;
+    color: $dark-grey;
   }
 }
 </style>

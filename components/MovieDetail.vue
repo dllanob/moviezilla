@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   props: {
@@ -46,9 +46,11 @@ export default {
     })
   },
   methods: {
-
+    ...mapActions({
+      addItemToCart: 'cart/addItemToCart'
+    }),
     addMovie (movie) {
-      this.addMovieToCart(movie).then(() => this.$message.success('Movie added to the cart'))
+      this.addItemToCart(movie).then(() => this.$message.success('Movie added to the cart'))
     }
   }
 }

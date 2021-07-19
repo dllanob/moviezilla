@@ -15,13 +15,18 @@
       @close="onClose"
     >
       <cart-list />
+      <hr>
+      <a-button v-if="items.length > 0" class="cart_delete" type="link" @click="clearCartItems">
+        Clear cart
+        <a-icon type="delete" />
+      </a-button>
       <cart-total />
     </a-drawer>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   data () {
@@ -35,11 +40,21 @@ export default {
     })
   },
   methods: {
+    ...mapMutations({
+      clearCart: 'cart/CLEAR_CART',
+      clearTotal: 'cart/CLEAR_TOTAL'
+    }),
     openCart () {
       this.visible = !this.visible
     },
     onClose () {
       this.visible = false
+    },
+    clearCartItems () {
+      this.clearCart()
+      this.clearTotal()
+      this.visible = false
+      this.$message.success('Now the cart is empty')
     }
   }
 }
@@ -69,6 +84,10 @@ export default {
       border-radius: 5px;
       overflow: hidden;
       transform: translateX(110%) !important; // important to overide library styles
+      .ant-drawer-title {
+        font-weight: bolder;
+        font-size: 1.4em;
+      }
       .ant-drawer-body {
         display: flex;
         flex-direction: column;
@@ -76,6 +95,9 @@ export default {
         justify-content: space-between;
       }
     }
+  }
+  &_delete {
+    color: red;
   }
 }
 </style>
