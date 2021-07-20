@@ -91,6 +91,9 @@ export default {
   &--banner {
     padding: 50px;
     position: relative;
+    @media only screen and (max-width: 1200px) {
+      padding: 30px;
+    }
     &:before {
       content: '';
       top: 0;
@@ -111,6 +114,9 @@ export default {
       font-size: 2em;
       position: relative;
       text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
+      @media only screen and (max-width: 568px) {
+        font-size: 1.4em;
+      }
     }
     #{$block}_subtitle {
       opacity: 0.7;

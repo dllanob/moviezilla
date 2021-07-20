@@ -43,5 +43,10 @@ export default {
   color: white;
   font-size: 2em;
   position: absolute;
+  z-index: 10;
+  @media only screen and (max-width: 767px) {
+    left: 30px;
+    font-size: 1.4em;
+  }
 }
 </style>

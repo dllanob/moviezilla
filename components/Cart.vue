@@ -67,6 +67,10 @@ export default {
     right: 20px;
     bottom: 20px;
     position: fixed;
+    @media only screen and (max-width: 767px) {
+      width: 90%;
+      z-index: 100;
+    }
   }
   &_drawer {
     padding: 20px;
@@ -84,6 +88,9 @@ export default {
       border-radius: 5px;
       overflow: hidden;
       transform: translateX(110%) !important; // important to overide library styles
+      @media only screen and (max-width: 767px) {
+         width: 80vw !important; // important to overide library styles
+      }
       .ant-drawer-title {
         font-weight: bolder;
         font-size: 1.4em;
@@ -98,6 +105,9 @@ export default {
   }
   &_delete {
     color: red;
+    &:hover {
+      color: darken($color: red, $amount: 20)
+    }
   }
 }
 </style>

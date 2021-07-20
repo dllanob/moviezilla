@@ -13,6 +13,7 @@ ol.list {
       content: counter(counter) ". ";
       top: 0;
       left: 0;
+      color: white;
       font-weight: bold;
       position: absolute;
     }

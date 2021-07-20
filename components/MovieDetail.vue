@@ -20,12 +20,12 @@
         Buy movie
         <a-icon type="shopping-cart" />
       </a-button>
-      <div class="movie-detail_others">
-        <h3 class="movie-detail_subtitle">
-          You may also like
-        </h3>
-        <similar-items-list v-if="movie" />
-      </div>
+    </div>
+    <div class="movie-detail_others">
+      <h3 class="movie-detail_subtitle">
+        You may also like
+      </h3>
+      <similar-items-list v-if="movie" />
     </div>
   </div>
 </template>
@@ -59,19 +59,17 @@ export default {
 <style lang="scss">
 .movie-detail {
   padding: 120px 70px 50px;
-  &_back {
-    top: 50px;
-    left: 70px;
-    font-size: 2em;
-    position: absolute;
+  background-color: black;
+  @media only screen and (max-width: 767px) {
+    padding: 100px 30px 50px;
   }
   &_banner {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     position: absolute;
-    z-index: -1;
+    z-index: 1;
     &:before,
     &:after {
       content: '';
@@ -101,10 +99,22 @@ export default {
       -o-animation: 2s appear;
       -ms-animation: 2s appear;
       animation: 2s appear;
+      @media only screen and (max-width: 767px) {
+        width: 100vw;
+      }
     }
   }
   &_content {
     width: 50%;
+    display: block;
+    position: relative;
+    padding-right: 50px;
+    z-index: 10;
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+      padding-right: 0;
+      position: relative;
+    }
   }
   &_date {
     opacity: 0.7;
@@ -116,6 +126,12 @@ export default {
     font-size: 3em;
     font-weight: bolder;
     margin-bottom: 20px;
+    @media only screen and (max-width: 767px) {
+      font-size: 2.4em;
+    }
+    @media only screen and (max-width: 568px) {
+      font-size: 1.8em;
+    }
   }
   &_categories {
     margin-bottom: 20px;
@@ -135,6 +151,15 @@ export default {
     right: 0;
     bottom: 50px;
     position: absolute;
+    z-index: 10;
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+      right: initial;
+      bottom: initial;
+      display: block;
+      position: relative;
+      margin-top: 50px;
+    }
   }
 }
 </style>

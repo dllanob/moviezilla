@@ -49,6 +49,9 @@ export default {
   display: flex;
   margin-top: 50px;
   margin-bottom: 50px;
+  @media only screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
   .ant-rate {
     font-size: 1em;
     margin-bottom: 15px;
@@ -56,11 +59,17 @@ export default {
   &_banner,
   &_description {
     width: 50%;
+    @media only screen and (max-width: 1024px) {
+      width: 100%;
+    }
   }
   &_banner {
     overflow: hidden;
     position: relative;
     border-radius: 10px;
+    @media only screen and (max-width: 1024px) {
+      margin-bottom: 30px;
+    }
     > img {
       width: 100%;
       height: 100%;
@@ -69,6 +78,9 @@ export default {
   }
   &_description {
     padding-left: 50px;
+    @media only screen and (max-width: 1024px) {
+      padding-left: 0;
+    }
     &_title {
       font-size: 1.4em;
       font-weight: bolder;
